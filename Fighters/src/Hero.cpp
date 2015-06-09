@@ -1,6 +1,9 @@
 #include "Hero.h"
 
-Hero::Hero( void ) : Plane ( Things::HERO, 0) {}
+Hero::Hero( void ) : Plane ( Things::HERO, 0)
+{
+    gunSpeed = -5;
+}
 
 void Hero::move ( int x )
 {
@@ -13,18 +16,35 @@ void Hero::move ( int x )
 
 void Hero::addGun ()
 {
-    sf::Vector2f pos = model.getPosition();
-    gunR++;
-    gun[gunR].setTexture ( Things::BULLET );
-    gun[gunR].setScale ( sf::Vector2f(0.5f, 0.5f) );
-    pos.y -= 12;
-    pos.x += 23;
-    gun[gunR].setPosition ( sf::Vector2f ( pos.x, pos.y) );
+    Plane::addGun ( Things::BULLET );
+    Sound::BULLET.play ();
 }
 
-void Hero::draw ( sf::RenderWindow& window )
+void Hero::gunMove ()
 {
-    window.draw (model);
+    if ( getRed()<1 )
+    {
+        if ( 10==timeDie )
+        {
+            red--;
+            timeDie = 0;
+            heroDown ();
+        }
+        else timeDie++;
+    }
+    Plane::gunMove ( gunSpeed );
+}
+
+void Hero::heroDown ()
+{
+    if ( red == 2 )
+        model.setTexture ( Things::HERO_BLOWUP1 );
+    if ( red == 1 )
+        model.setTexture ( Things::HERO_BLOWUP2 );
+    if ( red == 0 )
+        model.setTexture ( Things::HERO_BLOWUP3 );
+    if ( red == -1 )
+        model.setTexture ( Things::HERO_BLOWUP4 );
 }
 
 Hero::~Hero()

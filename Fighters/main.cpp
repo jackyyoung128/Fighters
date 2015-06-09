@@ -1,14 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "Things.h"
 #include "Sky.h"
-#include "Hero.h"
-#include "Sound.h"
-#include "DefineConst.h"
-#include <stdlib.h>
+#include <iostream>
 
-int t = M;
+int gapNow = 0;
+int timeNow = 0;
+int PASS;
+LIST_ENEMY enemy;
 
 void Game ( Hero& hero )
 {
@@ -23,17 +22,42 @@ void Game ( Hero& hero )
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        if (t==M)
+        if ( gapNow > (GAP-PASS*2) )
         {
             hero.addGun ();
+            gapNow = 0;
         }
     }
-    t--;
-    if (t==0)
-        t=M;
+}
 
-    //SKY::allMove ();
-    //SKY::gunIfRunInto ();
+void drawEnemy ( sf::RenderWindow& window )
+{
+    LIST_ENEMY::iterator i;
+    for ( i=enemy.begin(); i!=enemy.end(); )
+    {
+        (*i).draw ( window );
+        (*i).allMove();
+        if ( 0 == timeNow%(50-PASS*10) && (*i).getRed()>0 )
+        {
+            (*i).addGun();
+        }
+        sf::Vector2f pos = (*i).getPosition();
+        if ( pos.y<0 || pos.y>400 || (*i).ifDie() )
+        {
+            enemy.erase ( i++ );
+        }
+        else i++;
+    }
+}
+
+void levelUp ()
+{
+    LIST_ENEMY::iterator i;
+    for ( i=enemy.begin(); i!=enemy.end(); ++i )
+    {
+        (*i).updata ( PASS );
+    }
+    Sound::ACHIEVEMENT.play ();
 }
 
 int main()
@@ -42,11 +66,13 @@ int main()
     sf::RenderWindow window (sf::VideoMode(480*0.5, 800*0.5), "Fighters");
     window.setFramerateLimit(60);
 
+    PASS = 1;
+
     Things::load ();
     Sound::load ();
+    Text::load ();
 
     Sky sky;
-
     Hero hero;
     Sound::GAME_MUSIC.play ();
 
@@ -62,9 +88,42 @@ int main()
         }
 
         // clear the window with black color
-        window.clear(sf::Color::Black);
-
-        sky.draw ( window );
+        window.clear( sf::Color::Black );
+        if ( hero.getRed() < -1 )
+        {
+            sky.gameover ( window );
+            Sound::GAME_MUSIC.play ();
+        }
+        else
+        {
+            if ( hero.getRed() > 0 )
+            {
+                Game ( hero );
+                if ( timeNow > TIME-PASS*10 )
+                {
+                    timeNow = 0;
+                    sky.addEnemy ( enemy, PASS);
+                }
+                timeNow++;
+                gapNow++;
+                sky.heroGunRunInto ( hero, enemy );
+            }
+            hero.gunMove ();
+            sky.draw ( window );
+            hero.draw ( window );
+            drawEnemy ( window);
+        }
+        if ( Text::ans == 20 )
+        {
+            PASS = 2;
+            levelUp ();
+        }
+        if ( Text::ans > 60 )
+        {
+            PASS = 3;
+            levelUp ();
+        }
+        Text::outText ( window, hero.getRed() );
         // window.draw(...);
 
         // end the current frame

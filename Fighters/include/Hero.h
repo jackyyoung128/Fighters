@@ -1,10 +1,9 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include <SFML/Graphics.hpp>
 #include "Things.h"
 #include "Plane.h"
-#include "DefineConst.h"
+
 
 class Hero: public Plane
 {
@@ -13,10 +12,12 @@ class Hero: public Plane
 
         void move ( int );
         void addGun ();
-        void draw ( sf::RenderWindow& );
+        void gunMove ();
+        void heroDown ();
         virtual ~Hero();
     protected:
     private:
+        int gunSpeed;
 };
 
 #endif // HERO_H

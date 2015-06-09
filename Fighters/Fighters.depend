@@ -1,13 +1,9 @@
 # depslib dependency file v1.0
-1433661914 source:c:\users\pc\documents\github\fighters\fighters\main.cpp
+1433815634 source:c:\users\pc\documents\github\fighters\fighters\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	"Things.h"
 	"Sky.h"
-	"Hero.h"
-	"Sound.h"
-	"DefineConst.h"
-	<stdlib.h>
+	<iostream>
 
 1429780453 d:\sfml-2.3\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -490,43 +486,59 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1433506736 c:\users\pc\documents\github\fighters\fighters\include\things.h
+1433812355 c:\users\pc\documents\github\fighters\fighters\include\things.h
 	<SFML/Graphics.hpp>
 
-1433506849 c:\users\pc\documents\github\fighters\fighters\include\sky.h
-	<SFML/Graphics.hpp>
+1433811823 c:\users\pc\documents\github\fighters\fighters\include\sky.h
 	"Things.h"
+	"Hero.h"
+	"Enemy.h"
 
-1433661884 c:\users\pc\documents\github\fighters\fighters\include\hero.h
-	<SFML/Graphics.hpp>
+1433764915 c:\users\pc\documents\github\fighters\fighters\include\hero.h
 	"Things.h"
 	"Plane.h"
-	"DefineConst.h"
 
-1433661619 c:\users\pc\documents\github\fighters\fighters\include\plane.h
+1433764890 c:\users\pc\documents\github\fighters\fighters\include\plane.h
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	"DefineConst.h"
+	"Sound.h"
+	<list>
 
-1433508284 c:\users\pc\documents\github\fighters\fighters\include\defineconst.h
+1433766323 c:\users\pc\documents\github\fighters\fighters\include\defineconst.h
 
-1433661787 source:c:\users\pc\documents\github\fighters\fighters\src\hero.cpp
+1433766289 source:c:\users\pc\documents\github\fighters\fighters\src\hero.cpp
 	"Hero.h"
 
-1433508253 source:c:\users\pc\documents\github\fighters\fighters\src\plane.cpp
+1433815071 source:c:\users\pc\documents\github\fighters\fighters\src\plane.cpp
 	"Plane.h"
 
-1433506849 source:c:\users\pc\documents\github\fighters\fighters\src\sky.cpp
+1433814119 source:c:\users\pc\documents\github\fighters\fighters\src\sky.cpp
 	"SKY.h"
 
 1418908182 c:\users\pc\documents\github\fighters\fighters\include\resourcepath.hpp
 	<string>
 
-1433491784 source:c:\users\pc\documents\github\fighters\fighters\src\things.cpp
+1433814816 source:c:\users\pc\documents\github\fighters\fighters\src\things.cpp
 	"Things.h"
 
-1433490286 source:c:\users\pc\documents\github\fighters\fighters\src\sound.cpp
+1433813300 source:c:\users\pc\documents\github\fighters\fighters\src\sound.cpp
 	"Sound.h"
 
-1433490274 c:\users\pc\documents\github\fighters\fighters\include\sound.h
+1433814051 c:\users\pc\documents\github\fighters\fighters\include\sound.h
 	<SFML/Audio.hpp>
+
+1433815464 source:c:\users\pc\documents\github\fighters\fighters\src\enemy.cpp
+	"Enemy.h"
+
+1433815178 c:\users\pc\documents\github\fighters\fighters\include\enemy.h
+	"Plane.h"
+	"Things.h"
+	"Text.h"
+
+1433761152 source:c:\users\pc\documents\github\fighters\fighters\src\text.cpp
+	"Text.h"
+
+1433760947 c:\users\pc\documents\github\fighters\fighters\include\text.h
+	"Things.h"
 
