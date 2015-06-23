@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1433815634 source:c:\users\pc\documents\github\fighters\fighters\main.cpp
+1434940691 source:c:\users\pc\documents\github\fighters\fighters\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"Sky.h"
@@ -489,7 +489,7 @@
 1433812355 c:\users\pc\documents\github\fighters\fighters\include\things.h
 	<SFML/Graphics.hpp>
 
-1433811823 c:\users\pc\documents\github\fighters\fighters\include\sky.h
+1434093788 c:\users\pc\documents\github\fighters\fighters\include\sky.h
 	"Things.h"
 	"Hero.h"
 	"Enemy.h"
@@ -510,16 +510,16 @@
 1433766289 source:c:\users\pc\documents\github\fighters\fighters\src\hero.cpp
 	"Hero.h"
 
-1433815071 source:c:\users\pc\documents\github\fighters\fighters\src\plane.cpp
+1433815671 source:c:\users\pc\documents\github\fighters\fighters\src\plane.cpp
 	"Plane.h"
 
-1433814119 source:c:\users\pc\documents\github\fighters\fighters\src\sky.cpp
+1434093768 source:c:\users\pc\documents\github\fighters\fighters\src\sky.cpp
 	"SKY.h"
 
 1418908182 c:\users\pc\documents\github\fighters\fighters\include\resourcepath.hpp
 	<string>
 
-1433814816 source:c:\users\pc\documents\github\fighters\fighters\src\things.cpp
+1434095620 source:c:\users\pc\documents\github\fighters\fighters\src\things.cpp
 	"Things.h"
 
 1433813300 source:c:\users\pc\documents\github\fighters\fighters\src\sound.cpp
@@ -536,9 +536,9 @@
 	"Things.h"
 	"Text.h"
 
-1433761152 source:c:\users\pc\documents\github\fighters\fighters\src\text.cpp
+1434940706 source:c:\users\pc\documents\github\fighters\fighters\src\text.cpp
 	"Text.h"
 
-1433760947 c:\users\pc\documents\github\fighters\fighters\include\text.h
+1434940660 c:\users\pc\documents\github\fighters\fighters\include\text.h
 	"Things.h"
 

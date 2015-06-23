@@ -6,9 +6,10 @@ Sky::Sky ()
     background.setScale ( sf::Vector2f(0.5f, 0.5f) );
 }
 
-void Sky::draw ( sf::RenderWindow& window )
+void Sky::draw ( sf::RenderWindow& window, Hero &hero )
 {
     window.draw ( background );
+    hero.draw ( window );
 }
 
 void Sky::gameover ( sf::RenderWindow& window )

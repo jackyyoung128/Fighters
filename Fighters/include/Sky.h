@@ -12,7 +12,7 @@ class Sky
 
         void addEnemy ( LIST_ENEMY&, int );
         void heroGunRunInto ( Hero&, LIST_ENEMY& );
-        void draw ( sf::RenderWindow& );
+        void draw ( sf::RenderWindow&, Hero& );
         void gameover ( sf::RenderWindow& );
     private:
         sf::Sprite background;

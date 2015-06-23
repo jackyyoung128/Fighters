@@ -50,6 +50,3 @@ void Things::load()
     SCORE_FONT.loadFromFile( "resource/font/TEMPSITC.ttf");
     LIFE_FONT.loadFromFile( "resource/font/ARIALUNI.ttf");
 }
-
-
-

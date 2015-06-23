@@ -52,12 +52,27 @@ void drawEnemy ( sf::RenderWindow& window )
 
 void levelUp ()
 {
-    LIST_ENEMY::iterator i;
-    for ( i=enemy.begin(); i!=enemy.end(); ++i )
+    bool flag = false;
+    if ( Text::ans == 20 )
     {
-        (*i).updata ( PASS );
+        flag = true;
+        PASS = 2;
     }
-    Sound::ACHIEVEMENT.play ();
+    if ( Text::ans > 60 )
+    {
+        PASS = 3;
+        flag = true;
+    }
+
+    if ( flag )
+    {
+        LIST_ENEMY::iterator i;
+        for ( i=enemy.begin(); i!=enemy.end(); ++i )
+        {
+            (*i).updata ( PASS );
+        }
+        Sound::ACHIEVEMENT.play ();
+    }
 }
 
 int main()
@@ -89,42 +104,36 @@ int main()
 
         // clear the window with black color
         window.clear( sf::Color::Black );
+
+        int test = 0;
         if ( hero.getRed() < -1 )
+            test = 1;
+        switch ( test )
         {
-            sky.gameover ( window );
-            Sound::GAME_MUSIC.play ();
-        }
-        else
-        {
-            if ( hero.getRed() > 0 )
-            {
-                Game ( hero );
-                if ( timeNow > TIME-PASS*10 )
+            case 1:
+                sky.gameover ( window );
+                Sound::GAME_MUSIC.play ();
+                break;
+            case 0:
+                if ( hero.getRed() > 0 )
                 {
-                    timeNow = 0;
-                    sky.addEnemy ( enemy, PASS);
+                    Game ( hero );
+                    if ( timeNow > TIME-PASS*10 )
+                    {
+                        timeNow = 0;
+                        sky.addEnemy ( enemy, PASS);
+                    }
+                    timeNow++;
+                    gapNow++;
+                    sky.heroGunRunInto ( hero, enemy );
                 }
-                timeNow++;
-                gapNow++;
-                sky.heroGunRunInto ( hero, enemy );
-            }
-            hero.gunMove ();
-            sky.draw ( window );
-            hero.draw ( window );
-            drawEnemy ( window);
+                hero.gunMove ();
+                sky.draw ( window, hero );
+                drawEnemy ( window );
+                break;
         }
-        if ( Text::ans == 20 )
-        {
-            PASS = 2;
-            levelUp ();
-        }
-        if ( Text::ans > 60 )
-        {
-            PASS = 3;
-            levelUp ();
-        }
-        Text::outText ( window, hero.getRed() );
-        // window.draw(...);
+        levelUp ();
+        Text::outText ( window, hero.getRed(), PASS );
 
         // end the current frame
         window.display();
